@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 			
 			String n=request.getParameter("userName");
 			
-			pw.println("welcome to this page"+n);
+			pw.println("welcome to this page now"+n);
 
 }
 	}
