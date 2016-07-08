@@ -15,12 +15,9 @@ public class Test extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter pw=response.getWriter();
 		
-		ServletConfig config=getServletConfig();
-		String driver=config.getInitParameter("driver");
-		
-		pw.println("driver :"+driver);
+		String n=request.getParameter("name");
+		response.sendRedirect("https://www.google.co.in/#q="+n);
 	}
 
 }
