@@ -5,10 +5,10 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -29,8 +29,8 @@ public class LoginServlet extends HttpServlet {
 			pw.println("<h1>You are successfully logged in</h1>");
 			pw.println("Welcome "+n);
 			
-			Cookie ck=new Cookie("name",n);
-			response.addCookie(ck);
+			HttpSession session=request.getSession();
+			session.setAttribute("name",n);
 		}
 		
 		else

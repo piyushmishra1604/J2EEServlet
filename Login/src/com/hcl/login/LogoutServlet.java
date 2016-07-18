@@ -5,10 +5,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
@@ -22,10 +23,8 @@ public class LogoutServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("link.html").include(request, response);
 		
-		Cookie ck=new Cookie("name","");
-		ck.setMaxAge(0);
-		ck.setValue(null);
-		response.addCookie(ck);
+		HttpSession session=request.getSession();
+		session.invalidate();
 		
 		pw.println("<br><br><br><h2>you are successfully logged out of the page</h2>");
 		

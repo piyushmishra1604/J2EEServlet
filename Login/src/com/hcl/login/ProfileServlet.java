@@ -5,10 +5,10 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ProfileServlet")
 public class ProfileServlet extends HttpServlet {
@@ -22,14 +22,10 @@ public class ProfileServlet extends HttpServlet {
 
 		request.getRequestDispatcher("link.html").include(request, response);
 
-		Cookie ck[] = request.getCookies();
-		if (ck != null) {
-			String name = ck[0].getValue();
-			if (!name.equals("") || name != null) {
-				pw.print("<br>Welcome to profile");
-				pw.print("<br>Welcome " + name);
-			}
-		
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String name = (String)session.getAttribute("name");
+			pw.print("Welcome to profile " + name);
 
 		} else {
 			pw.println("<br>Please Login First");
